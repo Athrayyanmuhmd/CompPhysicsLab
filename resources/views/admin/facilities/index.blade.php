@@ -53,7 +53,7 @@
                 <div class="grid grid-cols-1 gap-6">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Judul Halaman</label>
-                        <input type="text" name="title" value="{{ $facility->title ?? 'Fasilitas Laboratorium Fisika Dasar' }}" required
+                        <input type="text" name="title" value="{{ $facility->title ?? 'Fasilitas Laboratorium Fisika Komputasi' }}" required
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg">
                     </div>
 
@@ -61,7 +61,7 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Singkat</label>
                         <textarea name="description" required rows="4"
                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                                  placeholder="Deskripsi singkat tentang fasilitas laboratorium...">{{ $facility->description ?? 'Laboratorium Fisika Dasar dilengkapi dengan berbagai fasilitas modern untuk mendukung kegiatan praktikum dan pembelajaran mahasiswa.' }}</textarea>
+                                  placeholder="Deskripsi singkat tentang fasilitas laboratorium...">{{ $facility->description ?? 'Laboratorium Fisika Komputasi dilengkapi dengan berbagai fasilitas modern untuk mendukung kegiatan praktikum dan pembelajaran mahasiswa.' }}</textarea>
                     </div>
                 </div>
 

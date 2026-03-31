@@ -27,7 +27,7 @@
         <div class="flex justify-between items-center">
             <div>
                 <h1 class="text-3xl font-bold mb-2">Kelola Alat Laboratorium</h1>
-                <p class="text-blue-100">Manajemen inventaris alat laboratorium fisika dasar</p>
+                <p class="text-blue-100">Manajemen inventaris alat laboratorium fisika komputasi</p>
             </div>
             <div class="text-right">
                 <div class="text-2xl font-bold">{{ $stats['total_alat'] }}</div>
@@ -145,9 +145,10 @@
         @forelse($alats as $alat)
             <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
                 <div class="relative">
-                    <img src="{{ $alat->image_url ? asset('storage/' . $alat->image_url) : asset('images/no-image.png') }}"
+                    <img src="{{ $alat->image_asset }}"
                          alt="{{ $alat->nama }}"
-                         class="w-full h-48 object-cover">
+                         class="w-full h-48 object-cover"
+                         onerror="this.src='{{ asset('images/equipment/default.jpg') }}'">
 
                     <!-- Status Badge -->
                     <div class="absolute top-2 right-2">

@@ -570,7 +570,7 @@
         let message = '';
 
         if (type === 'approved') {
-            message = `Halo ${visitorName},\n\n✅ *KUNJUNGAN DISETUJUI*\n\nKunjungan Anda ke Laboratorium Fisika Dasar telah disetujui!\n\n📅 Tanggal: ${visitDate}\n⏰ Waktu: ${visitTime}\n\n📋 Silakan datang sesuai jadwal dan bawa:\n• Kartu identitas\n• Surat pengajuan asli\n• Mengikuti protokol keselamatan lab\n\n🔗 Pantau status: ${trackingUrl}\n\nTerima kasih!`;
+            message = `Halo ${visitorName},\n\n✅ *KUNJUNGAN DISETUJUI*\n\nKunjungan Anda ke Laboratorium Fisika Komputasi telah disetujui!\n\n📅 Tanggal: ${visitDate}\n⏰ Waktu: ${visitTime}\n\n📋 Silakan datang sesuai jadwal dan bawa:\n• Kartu identitas\n• Surat pengajuan asli\n• Mengikuti protokol keselamatan lab\n\n🔗 Pantau status: ${trackingUrl}\n\nTerima kasih!`;
         } else if (type === 'rejected') {
             message = `Halo ${visitorName},\n\n❌ *KUNJUNGAN TIDAK DAPAT DIPROSES*\n\nMohon maaf, pengajuan kunjungan Anda tidak dapat kami proses saat ini.\n\nSilakan hubungi admin untuk informasi lebih lanjut atau ajukan ulang dengan jadwal yang berbeda.\n\n🔗 Status pengajuan: ${trackingUrl}\n\nTerima kasih atas pengertiannya.`;
         }
@@ -599,7 +599,7 @@
         const visitorName = '{{ $kunjungan->namaPengunjung }}';
         const trackingUrl = '{{ $kunjungan->tracking_url }}';
 
-        const fullMessage = `Halo ${visitorName},\n\n${message}\n\n🔗 Pantau status pengajuan: ${trackingUrl}\n\nSalam,\nAdmin Laboratorium Fisika Dasar`;
+        const fullMessage = `Halo ${visitorName},\n\n${message}\n\n🔗 Pantau status pengajuan: ${trackingUrl}\n\nSalam,\nAdmin Laboratorium Fisika Komputasi`;
 
         const whatsappUrl = `https://wa.me/${visitorPhone.replace(/^0/, '62')}?text=${encodeURIComponent(fullMessage)}`;
         window.open(whatsappUrl, '_blank');

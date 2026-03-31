@@ -13,6 +13,11 @@ class ProfilLaboratorium extends Model
         'tentangLaboratorium',
         'visi',
         'misiId',
+        'jumlah_komputer',
+    ];
+
+    protected $casts = [
+        'misiId' => 'string',
     ];
 
     public function misi(): BelongsTo

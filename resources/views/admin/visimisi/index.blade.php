@@ -256,7 +256,7 @@
     <div class="lg:col-span-1 fade-up" style="animation-delay: 0.1s">
         <div class="preview-card mb-6">
             <span class="preview-label">Preview</span>
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $profil->namaLaboratorium ?? 'Laboratorium Fisika Dasar' }}</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ $profil->namaLaboratorium ?? 'Laboratorium Fisika Komputasi' }}</h3>
             <div class="text-sm text-gray-600 mb-4">
                 <p>{{ $profil->tentangLaboratorium ?? 'Deskripsi laboratorium belum diatur' }}</p>
             </div>
@@ -308,6 +308,16 @@
                     </div>
 
                     <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Jumlah Unit Komputer
+                            <span class="text-xs text-gray-500 font-normal ml-1">(ditampilkan di halaman utama)</span>
+                        </label>
+                        <input type="number" name="jumlah_komputer" min="1" max="9999"
+                               value="{{ $profil->jumlah_komputer ?? 40 }}"
+                               class="form-input w-32" required>
+                    </div>
+
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Misi</label>
 
                         @if($misis->count() > 0)
@@ -331,7 +341,7 @@
                     </div>
 
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary" {{ $misis->count() == 0 ? 'disabled' : '' }}>
+                        <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save"></i>
                             Simpan Profil
                         </button>

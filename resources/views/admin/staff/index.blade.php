@@ -365,7 +365,7 @@ use App\Models\Gambar;
 
         <!-- Card Header with gradient background -->
         <div class="h-24 bg-gradient-to-br from-blue-500 to-purple-600 relative">
-            <div class="absolute inset-0 bg-black opacity-10"></div>
+            <div class="absolute bg-black opacity-10 w-full h-full"></div>
         </div>
 
         <!-- Staff Info -->
@@ -373,7 +373,7 @@ use App\Models\Gambar;
             <!-- Avatar -->
             <div class="flex justify-center mb-4">
                 @if($staffFoto)
-                     <img src="{{ asset($staffFoto->url) }}"
+                     <img src="{{ asset('storage/' . $staffFoto->url) }}"
                         alt="{{ $person->nama }}"
                         class="staff-avatar"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"

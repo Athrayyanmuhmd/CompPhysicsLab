@@ -37,7 +37,7 @@
             <div class="scroll-animate" data-animation="slide-left">
                 <div class="relative">
                     <div class="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl">
-                        <img src="{{ asset('images/equipment/' . $equipment['image']) }}"
+                        <img src="{{ $equipment['image'] }}"
                              alt="{{ $equipment['name'] }}"
                              class="w-full h-full object-cover"
                              onerror="this.src='{{ asset('images/equipment/default.jpg') }}'">

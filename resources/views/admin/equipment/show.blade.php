@@ -66,9 +66,10 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="aspect-video bg-gray-100 flex items-center justify-center">
                     @if($equipment->image_url)
-                        <img src="{{ asset('storage/' . $equipment->image_url) }}"
+                        <img src="{{ $equipment->image_asset }}"
                              alt="{{ $equipment->nama }}"
-                             class="max-w-full max-h-full object-contain">
+                             class="max-w-full max-h-full object-contain"
+                             onerror="this.src='{{ asset('images/equipment/default.jpg') }}'">
                     @else
                         <div class="text-center text-gray-400">
                             <i class="fas fa-image text-6xl mb-4"></i>

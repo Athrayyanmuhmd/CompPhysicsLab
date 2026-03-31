@@ -46,9 +46,9 @@
                    <!-- Stat 1 -->
                     <div class="text-center">
                         <div class="text-3xl md:text-5xl lg:text-6xl font-bold text-blue-600 mb-2 transition-all duration-300 hover:scale-110">
-                            {{ $totalAlat }}
+                            {{ $totalKomputer }}
                         </div>
-                        <div class="text-gray-700 text-xs md:text-sm lg:text-base font-medium">Peralatan Modern</div>
+                        <div class="text-gray-700 text-xs md:text-sm lg:text-base font-medium">Unit Komputer</div>
                     </div>
 
                     <!-- Stat 2 -->
@@ -97,7 +97,7 @@
 .typewriter-cursor::after {
     content: '|';
     animation: blink 1s infinite;
-    color: #FCD34D;
+    color: #60A5FA;
 }
 
 @keyframes blink {
@@ -146,10 +146,10 @@ document.addEventListener('DOMContentLoaded', function() {
         welcomeText.classList.add('slide-down');
     }, 500);
 
-    // 2. Typewriter effect untuk "Laboratorium Fisika Dasar" (looping dengan warna berbeda)
+    // 2. Typewriter effect untuk "Laboratorium Fisika Komputasi" (looping dengan warna berbeda)
     function typeWriter(element, speed = 100, isLooping = false) {
-        const text1 = "Laboratorium ";
-        const text2 = "Fisika Dasar";
+        const text1 = "LABORATORIUM ";
+        const text2 = "FISIKA KOMPUTASI";
 
         return new Promise((resolve) => {
             let i = 0;
@@ -163,9 +163,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Ketik "Laboratorium " dengan warna putih
                         element.innerHTML = `<span class="text-white">${text1.substring(0, i + 1)}</span>`;
                     } else {
-                        // Ketik "Fisika Dasar" dengan warna kuning
+                        // Ketik "Fisika Komputasi" dengan warna biru
                         const text2Index = i - text1.length;
-                        element.innerHTML = `<span class="text-white">${text1}</span><span class="text-yellow-400">${text2.substring(0, text2Index + 1)}</span>`;
+                        element.innerHTML = `<span class="text-white">${text1}</span><span class="text-blue-400">${text2.substring(0, text2Index + 1)}</span>`;
                     }
                     i++;
                     setTimeout(type, speed);
@@ -186,17 +186,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function deleteText(element, speed) {
-        const text1 = "Laboratorium ";
-        const text2 = "Fisika Dasar";
+        const text1 = "LABORATORIUM ";
+        const text2 = "FISIKA KOMPUTASI";
         const totalLength = text1.length + text2.length;
         let i = totalLength;
 
         function deleteChar() {
             if (i > 0) {
                 if (i > text1.length) {
-                    // Hapus dari "Fisika Dasar"
+                    // Hapus dari "Fisika Komputasi"
                     const text2Index = i - text1.length;
-                    element.innerHTML = `<span class="text-white">${text1}</span><span class="text-yellow-400">${text2.substring(0, text2Index - 1)}</span>`;
+                    element.innerHTML = `<span class="text-white">${text1}</span><span class="text-blue-400">${text2.substring(0, text2Index - 1)}</span>`;
                 } else {
                     // Hapus dari "Laboratorium "
                     element.innerHTML = `<span class="text-white">${text1.substring(0, i - 1)}</span>`;
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mulai typewriter setelah welcome text muncul
     setTimeout(() => {
-        // Ketik "Laboratorium Fisika Dasar" (looping terus)
+        // Ketik "Laboratorium Fisika Komputasi" (looping terus)
         typeWriter(typewriterElement, 100, true);
 
         // Tampilkan subtitle setelah selesai mengetik pertama kali

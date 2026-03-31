@@ -1,7 +1,7 @@
 {{-- resources/views/services/equipment-loan.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Layanan Peminjaman Alat - Laboratorium Fisika Dasar')
+@section('title', 'Layanan Peminjaman Alat - Laboratorium Fisika Komputasi')
 
 @section('content')
 <!-- Hero Section -->
@@ -45,7 +45,10 @@
         <div class="scroll-animate mb-8 opacity-0" data-animation="fade-up" data-delay="200">
             <h1 class="font-poppins text-5xl md:text-7xl font-bold leading-tight mb-6">
                 <span class="text-white">Layanan</span>
-                <span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg"> Peminjaman</span>
+                <span class="bg-clip-text text-transparent drop-shadow-lg"
+                    style="background-image: linear-gradient(90deg, rgba(250, 204, 21, 1) 0%, rgba(255, 255, 255, 1) 0%); -webkit-background-clip: text; color: transparent;">
+                    Peminjaman
+                </span>
             </h1>
             <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
                 Akses mudah ke peralatan laboratorium berkualitas tinggi untuk mendukung penelitian dan praktikum Anda
@@ -170,7 +173,7 @@
                     <div class="flex items-start space-x-3">
                         <i class="fas fa-lightbulb text-yellow-600 mt-1"></i>
                         <div class="text-sm text-yellow-700">
-                            <strong>Tips:</strong> Pastikan membawa kartu identitas, surat pengajuan, dan siap mengikuti briefing penggunaan alat untuk keamanan bersama. surat pengajuan kunjungan merujuk pada <a href="https://drive.google.com/file/d/1UMECW8-I1haaMoSVezYNgUbGNmWRr-5k/view?usp=sharing" target="_blank" rel="noopener noreferrer"><strong>SOP Laboratorium FISIKA DASAR</strong></a>
+                            <strong>Tips:</strong> Pastikan membawa kartu identitas, surat pengajuan, dan siap mengikuti briefing penggunaan alat untuk keamanan bersama. surat pengajuan kunjungan merujuk pada <a href="https://drive.google.com/file/d/1UMECW8-I1haaMoSVezYNgUbGNmWRr-5k/view?usp=sharing" target="_blank" rel="noopener noreferrer"><strong>SOP Laboratorium FISIKA KOMPUTASI</strong></a>
                         </div>
                     </div>
                 </div>
@@ -291,8 +294,8 @@
 
                 <!-- Image -->
                 <div class="relative overflow-hidden h-48 bg-gradient-to-br from-gray-100 to-gray-200">
-                    @if(!empty($equipment['image']) && $equipment['image'] !== 'default.jpg')
-                        <img src="{{ asset('storage/equipment/' . $equipment['image']) }}"
+                    @if(!empty($equipment['image']))
+                        <img src="{{ $equipment['image'] }}"
                             alt="{{ $equipment['name'] }}"
                             class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
                             onerror="this.src='{{ asset('images/equipment/default.jpg') }}'">

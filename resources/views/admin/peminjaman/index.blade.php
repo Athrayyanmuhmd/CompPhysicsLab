@@ -428,7 +428,7 @@
                                             'jumlah'           => $it->jumlah,
                                             'stok'             => $it->alat->stok,
                                             'jumlah_tersedia'  => $it->alat->jumlah_tersedia,
-                                            'image_url'        => $it->alat->image_url ? asset('storage/'.$it->alat->image_url) : null,
+                                            'image_url'        => $it->alat->image_asset,
                                             'category_icon'    => method_exists($it->alat, 'getCategoryIcon') ? $it->alat->getCategoryIcon() : 'tools',
                                         ];
                                     })

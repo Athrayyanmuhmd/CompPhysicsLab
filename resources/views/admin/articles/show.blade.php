@@ -49,10 +49,10 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         @foreach($article->gambar as $gambar)
                             <div class="relative group">
-                                <img src="{{ asset($gambar->url) }}"
+                                <img src="{{ asset('storage/' . $gambar->url) }}"
                                      alt="Gambar artikel"
                                      class="w-full h-48 object-cover rounded-lg cursor-pointer hover:opacity-90 transition"
-                                     onclick="openImageModal('{{ asset($gambar->url) }}')">
+                                     onclick="openImageModal('{{ asset('storage/' . $gambar->url) }}')">
                                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all rounded-lg flex items-center justify-center">
                                     <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-all text-xl"></i>
                                 </div>

@@ -337,7 +337,7 @@ class EquipmentLoanController extends Controller
             'id' => $alat->id,
             'name' => $alat->nama,
             'model' => $alat->kode,
-            'image' => $alat->image_url ? basename($alat->image_url) : 'default.jpg',
+            'image' => $this->getEquipmentImageUrl($alat->image_url),
             'category' => $alat->nama_kategori,
             'status' => $status,
             'quantity_total' => $alat->stok,
@@ -352,6 +352,25 @@ class EquipmentLoanController extends Controller
             'detailed_status' => method_exists($alat, 'getDetailedStatus') ? $alat->getDetailedStatus() : null,
             'borrowing_status' => method_exists($alat, 'getBorrowingStatus') ? $alat->getBorrowingStatus() : null,
         ];
+    }
+
+    /**
+     * Get proper image URL for equipment
+     * Handles both old (public/images/equipment/) and new (storage/equipment/) paths
+     */
+    private function getEquipmentImageUrl($imageUrl)
+    {
+        if (empty($imageUrl)) {
+            return asset('images/equipment/default.jpg');
+        }
+
+        // If stored via Storage disk (e.g., 'equipment/filename.jpg')
+        if (str_starts_with($imageUrl, 'equipment/')) {
+            return asset('storage/' . $imageUrl);
+        }
+
+        // Old seeder data (just filename, e.g., 'oscilloscope.jpeg')
+        return asset('images/equipment/' . $imageUrl);
     }
 
     /**

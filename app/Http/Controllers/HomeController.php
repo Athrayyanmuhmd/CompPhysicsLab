@@ -37,9 +37,10 @@ class HomeController extends Controller
         // Dummy fallback data...
         if (!$profil) {
             $profil = (object) [
-                'namaLaboratorium' => 'Fisika Dasar',
-                'tentangLaboratorium' => 'Laboratorium Fisika Dasar merupakan fasilitas unggulan yang berkomitmen untuk mengembangkan penelitian dan pendidikan di bidang fisika dengan teknologi terdepan.',
-                'visi' => 'Menjadi laboratorium fisika terdepan di Indonesia yang berkontribusi dalam penelitian dan pengembangan ilmu fisika untuk kemajuan bangsa.'
+                'namaLaboratorium' => 'Fisika Komputasi',
+                'tentangLaboratorium' => 'Laboratorium Fisika Komputasi merupakan fasilitas unggulan yang berkomitmen untuk mengembangkan penelitian dan pendidikan di bidang fisika dengan teknologi terdepan.',
+                'visi' => 'Menjadi laboratorium fisika terdepan di Indonesia yang berkontribusi dalam penelitian dan pengembangan ilmu fisika untuk kemajuan bangsa.',
+                'jumlah_komputer' => 40,
             ];
         }
 
@@ -59,7 +60,7 @@ class HomeController extends Controller
                     'excerpt' => 'Laboratorium berhasil mengembangkan sistem monitoring aktivitas seismik yang dapat memberikan peringatan dini dengan akurasi tinggi.',
                     'author' => 'Dr. Ahmad Rahman',
                     'date' => now()->subDays(7)->format('Y-m-d'),
-                    'image' => 'images/article/article-1.jpeg',
+                    'image' => asset('images/article/article-1.jpeg'),
                     'slug' => 'pengembangan-sistem-monitoring-seismik'
                 ],
                 [
@@ -68,7 +69,7 @@ class HomeController extends Controller
                     'excerpt' => 'Penerapan teknologi AR dan VR dalam praktikum fisika modern memberikan pengalaman belajar yang lebih interaktif.',
                     'author' => 'Prof. Siti Nurhaliza',
                     'date' => now()->subDays(10)->format('Y-m-d'),
-                    'image' => 'images/article/article-2.jpg',
+                    'image' => asset('images/article/article-2.jpg'),
                     'slug' => 'inovasi-metode-praktikum-fisika'
                 ],
                 [
@@ -77,14 +78,14 @@ class HomeController extends Controller
                     'excerpt' => 'Program pertukaran peneliti dan mahasiswa dalam bidang fisika material menghasilkan publikasi internasional berkualitas tinggi.',
                     'author' => 'Dr. Rizki Pratama',
                     'date' => now()->subDays(14)->format('Y-m-d'),
-                    'image' => 'images/article/article-1.jpeg',
+                    'image' => asset('images/article/article-1.jpeg'),
                     'slug' => 'kerjasama-penelitian-universitas-tokyo'
                 ]
             ];
         }
 
-         // Hitung statistik
-        $totalAlat = Alat::count();
+        // Hitung statistik
+        $totalKomputer = $profil->jumlah_komputer ?? 40;
         $totalKunjunganPerTahun = Kunjungan::whereYear('tanggal_kunjungan', now()->year)->count();
         $totalStaf = BiodataPengurus::count();
 
@@ -93,85 +94,32 @@ class HomeController extends Controller
             'profil',
             'misis',
             'galleryImages',
-            'totalAlat',
+            'totalKomputer',
             'totalKunjunganPerTahun',
             'totalStaf'
         ));
-
-        return view('home', compact('featuredArticles', 'profil', 'misis', 'galleryImages'));
     }
 
-    /**
-     * DEBUG VERSION: Method untuk mendapatkan gambar gallery dengan debug info
-     */
     private function getGalleryImages()
     {
         try {
-            // DEBUG: Log semua gambar yang ada
-            $allImages = Gambar::all();
-            \Log::info('All images in database:', $allImages->toArray());
+            // Ambil gambar unik (per URL): prioritas FASILITAS dulu, sisanya ACARA, maks 6
+            $images = Gambar::whereIn('kategori', ['FASILITAS', 'ACARA'])
+                            ->with('artikel')
+                            ->latest()
+                            ->get()
+                            ->sortByDesc(fn($img) => $img->kategori === 'FASILITAS' ? 1 : 0)
+                            ->unique('url')
+                            ->take(6)
+                            ->map(fn($image) => [
+                                'url'      => $image->url_lengkap,
+                                'kategori' => $image->kategori,
+                                'title'    => $this->getImageTitle($image),
+                            ]);
 
-            // DEBUG: Log gambar ACARA
-            $acaraImages = Gambar::where('kategori', 'ACARA')->get();
-            \Log::info('ACARA images found:', $acaraImages->toArray());
-
-            // DEBUG: Log gambar FASILITAS
-            $fasilitasImages = Gambar::where('kategori', 'FASILITAS')->get();
-            \Log::info('FASILITAS images found:', $fasilitasImages->toArray());
-
-            $images = collect();
-
-            // Ambil 4 gambar dari fasilitas (prioritas tertinggi)
-            $fasilitasImages = Gambar::where('kategori', 'FASILITAS')
-                                    ->latest()
-                                    ->limit(4)
-                                    ->get();
-            \Log::info('Selected FASILITAS images:', $fasilitasImages->toArray());
-            $images = $images->merge($fasilitasImages);
-
-            // Sisa gambar dari acara
-            $remainingCount = 6 - $images->count();
-            if ($remainingCount > 0) {
-                $acaraImages = Gambar::where('kategori', 'ACARA')
-                                    ->latest()
-                                    ->limit($remainingCount)
-                                    ->get();
-                \Log::info('Selected ACARA images:', $acaraImages->toArray());
-                $images = $images->merge($acaraImages);
-            }
-
-            // Jika masih kurang dari 6, ambil sisa dari FASILITAS dan ACARA saja
-            if ($images->count() < 6) {
-                $stillNeeded = 6 - $images->count();
-                $existingIds = $images->pluck('id')->toArray();
-
-                $additionalImages = Gambar::whereIn('kategori', ['FASILITAS', 'ACARA'])
-                                         ->whereNotIn('id', $existingIds)
-                                         ->latest()
-                                         ->limit($stillNeeded)
-                                         ->get();
-                \Log::info('Additional images:', $additionalImages->toArray());
-                $images = $images->merge($additionalImages);
-            }
-
-            // Shuffle untuk variasi dan ambil maksimal 6
-            $finalImages = $images->shuffle()->take(6)->map(function ($image) {
-                $result = [
-                    'url' => $image->url_lengkap,
-                    'kategori' => $image->kategori,
-                    'title' => $this->getImageTitle($image),
-                    'debug_info' => $image->getDebugUrlInfo() // TAMBAHAN untuk debug
-                ];
-                \Log::info('Final image processed:', $result);
-                return $result;
-            });
-
-            \Log::info('Final gallery images count:', ['count' => $finalImages->count()]);
-
-            return $finalImages;
+            return $images;
 
         } catch (\Exception $e) {
-            \Log::error('Error in getGalleryImages:', ['error' => $e->getMessage()]);
             return collect([]);
         }
     }
@@ -191,7 +139,7 @@ class HomeController extends Controller
                 }
                 return 'Kegiatan Laboratorium';
             default:
-                return 'Laboratorium Fisika Dasar';
+                return 'Laboratorium Fisika Komputasi';
         }
     }
 

@@ -1,7 +1,7 @@
 {{-- resources/views/staff.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Staff dan Tenaga Ahli - Laboratorium Fisika Dasar')
+@section('title', 'Staff dan Tenaga Ahli - Laboratorium Fisika Komputasi')
 
 @section('content')
 <!-- Hero Section -->
@@ -11,7 +11,7 @@
         <img src="{{ asset('images/hero.jpg') }}"
              alt="Hero Background"
              class="w-full h-full object-cover transform scale-105 transition-transform duration-[20s] ease-in-out hover:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#968c82]/80 via-[#635849]/70 to-[#443f35]/80"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-800/80 via-blue-700/70 to-blue-900/80"></div>
     </div>
 
     <!-- Animated Particles -->
@@ -26,13 +26,13 @@
             <nav class="flex justify-center" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
                     <li class="inline-flex items-center">
-                        <a href="{{ route('home') }}" class="text-amber-200 hover:text-white transition-colors duration-200 flex items-center">
+                        <a href="{{ route('home') }}" class="text-blue-200 hover:text-white transition-colors duration-200 flex items-center">
                             <i class="fas fa-home mr-2"></i>Beranda
                         </a>
                     </li>
                     <li>
                         <div class="flex items-center">
-                            <i class="fas fa-chevron-right text-amber-300 mx-3"></i>
+                            <i class="fas fa-chevron-right text-blue-300 mx-3"></i>
                             <span class="text-white font-medium">Staff dan Tenaga Ahli</span>
                         </div>
                     </li>
@@ -44,9 +44,9 @@
         <div class="staff-hero-animate mb-8 opacity-0" data-animation="fade-up" data-delay="200">
             <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
                 <span class="text-white drop-shadow-lg">Tim</span>
-                <span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg"> Profesional</span>
+                <span class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent drop-shadow-lg" style="background-image: linear-gradient(90deg, rgba(96, 165, 250, 1) 0%, rgba(255, 255, 255, 1) 0%); -webkit-background-clip: text; color: transparent;"> Profesional</span>
             </h1>
-            <p class="text-xl md:text-2xl text-amber-100 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
                 Berkenalan dengan para ahli yang berdedikasi mengembangkan ilmu fisika dan mendampingi perjalanan akademik Anda
             </p>
         </div>
@@ -64,16 +64,16 @@
                 <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                     <!-- Category Filter -->
                     <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-                        <button class="staff-filter-btn active px-6 py-3 bg-gradient-to-r from-[#968c82] to-[#635849] text-white rounded-full font-medium transition-all duration-300 hover:from-[#635849] hover:to-[#443f35] shadow-lg" data-filter="all">
+                        <button class="staff-filter-btn active px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-medium transition-all duration-300 hover:from-blue-600 hover:to-blue-800 shadow-lg" data-filter="all">
                             <i class="fas fa-users mr-2"></i>Semua Tim ({{ $stats['total_staff'] }})
                         </button>
-                        <button class="staff-filter-btn px-6 py-3 bg-white text-amber-700 border border-amber-200 rounded-full font-medium transition-all duration-300 hover:bg-amber-50" data-filter="kepala">
+                        <button class="staff-filter-btn px-6 py-3 bg-white text-blue-700 border border-blue-200 rounded-full font-medium transition-all duration-300 hover:bg-blue-50" data-filter="kepala">
                             <i class="fas fa-crown mr-2"></i>Kepala Lab ({{ $stats['kepala_lab'] }})
                         </button>
-                        <button class="staff-filter-btn px-6 py-3 bg-white text-amber-700 border border-amber-200 rounded-full font-medium transition-all duration-300 hover:bg-amber-50" data-filter="dosen">
+                        <button class="staff-filter-btn px-6 py-3 bg-white text-blue-700 border border-blue-200 rounded-full font-medium transition-all duration-300 hover:bg-blue-50" data-filter="dosen">
                             <i class="fas fa-graduation-cap mr-2"></i>Dosen ({{ $stats['dosen'] }})
                         </button>
-                        <button class="staff-filter-btn px-6 py-3 bg-white text-amber-700 border border-amber-200 rounded-full font-medium transition-all duration-300 hover:bg-amber-50" data-filter="laboran">
+                        <button class="staff-filter-btn px-6 py-3 bg-white text-blue-700 border border-blue-200 rounded-full font-medium transition-all duration-300 hover:bg-blue-50" data-filter="laboran">
                             <i class="fas fa-tools mr-2"></i>Laboran ({{ $stats['laboran'] }})
                         </button>
                     </div>
@@ -81,7 +81,7 @@
                     <!-- Search -->
                     <div class="relative">
                         <input type="text" id="staff-search" placeholder="Cari berdasarkan nama atau jabatan..."
-                               class="pl-12 pr-4 py-3 w-80 border border-gray-300 rounded-full focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300">
+                               class="pl-12 pr-4 py-3 w-80 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
                         <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                 </div>
@@ -89,6 +89,15 @@
         </div>
 
         <!-- Staff Grid -->
+        @if($pengurus->isEmpty())
+        <div class="col-span-full text-center py-24 staff-animate" data-animation="fade-up">
+            <div class="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-users text-blue-300 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-700 mb-3">Informasi Staff Segera Hadir</h3>
+            <p class="text-gray-500 max-w-md mx-auto">Data tim laboratorium sedang dalam proses pembaruan. Silakan kunjungi kembali halaman ini dalam waktu dekat.</p>
+        </div>
+        @else
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" id="staff-grid">
             @foreach($pengurus as $index => $member)
             @php
@@ -98,7 +107,7 @@
                 if (str_contains($jabatanLower, 'kepala')) {
                     $category = 'kepala';
                     $color = 'blue';
-                    $badgeColor = 'yellow';
+                    $badgeColor = 'blue';
                     $badgeIcon = 'star';
                 } elseif (str_contains($jabatanLower, 'dosen') || str_contains($jabatanLower, 'pengajar')) {
                     $category = 'dosen';
@@ -118,7 +127,7 @@
                 }
             @endphp
 
-            <div class="staff-card group relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-amber-200 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 overflow-hidden staff-animate"
+            <div class="staff-card group relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-blue-200 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 overflow-hidden staff-animate"
                  data-animation="fade-up"
                  data-delay="{{ ($index + 1) * 100 }}"
                  data-category="{{ $category }}"
@@ -134,7 +143,7 @@
                         <div class="relative inline-block mb-4">
                             <div class="w-32 h-40 bg-gradient-to-br from-{{ $color }}-200 to-{{ $color }}-300 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-500 overflow-hidden mx-auto">
                                 @if($member->fotoProfil)
-                                    <img src="{{ asset($member->fotoProfil->url) }}"
+                                    <img src="{{ asset('storage/' . $member->fotoProfil->url) }}"
                                         alt="{{ $member->nama }}"
                                         class="w-full h-full object-cover rounded-xl"
                                         onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user text-{{ $color }}-600 text-4xl\'></i>';">
@@ -163,7 +172,7 @@
             @endforeach
         </div>
 
-        <!-- Empty State -->
+        <!-- Empty State (for search/filter) -->
         <div id="empty-state" class="hidden text-center py-16">
             <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-search text-gray-400 text-2xl"></i>
@@ -171,6 +180,7 @@
             <h3 class="text-xl font-semibold text-gray-700 mb-2">Tidak ada data ditemukan</h3>
             <p class="text-gray-500">Coba ubah kata kunci pencarian atau filter yang Anda gunakan</p>
         </div>
+        @endif
     </div>
 </section>
 
@@ -329,9 +339,9 @@
 
 /* Filter Button Styles */
 .staff-filter-btn.active {
-    background: linear-gradient(135deg, #968c82 0%, #635849 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
-    box-shadow: 0 4px 15px rgba(150, 140, 130, 0.3);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
 }
 
 /* Animation Classes */
@@ -547,9 +557,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateFilterButtonStyles() {
         filterButtons.forEach(btn => {
             if (btn.classList.contains('active')) {
-                btn.className = 'staff-filter-btn active px-6 py-3 bg-gradient-to-r from-[#968c82] to-[#635849] text-white rounded-full font-medium transition-all duration-300 hover:from-[#635849] hover:to-[#443f35] shadow-lg';
+                btn.className = 'staff-filter-btn active px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-medium transition-all duration-300 hover:from-blue-600 hover:to-blue-800 shadow-lg';
             } else {
-                btn.className = 'staff-filter-btn px-6 py-3 bg-white text-amber-700 border border-amber-200 rounded-full font-medium transition-all duration-300 hover:bg-amber-50';
+                btn.className = 'staff-filter-btn px-6 py-3 bg-white text-blue-700 border border-blue-200 rounded-full font-medium transition-all duration-300 hover:bg-blue-50';
             }
         });
     }

@@ -8,7 +8,7 @@
         transition: all 0.2s ease;
     }
     .filter-section {
-        background: linear-gradient(135deg, #4e6ae7 0%, #2f21cb 100%);
+        background: linear-gradient(135deg, rgba(78, 106, 231, 1) 0%, rgba(30, 58, 138, 1) 0%);
     }
     .stats-card {
         background: linear-gradient(135deg, #1D4ED8E6 0%, #2a50bab3 100%);
@@ -35,7 +35,7 @@
                 Export Data
             </button>
             <button onclick="showStatistics()"
-                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition flex items-center">
+                    class="bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-800 transition flex items-center">
                 <i class="fas fa-chart-bar mr-2"></i>
                 Lihat Statistik
             </button>
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <div class="bg-yellow-500 text-white p-6 rounded-xl shadow-lg stats-card">
+    <div class="bg-yellow-500 text-white p-6 rounded-xl shadow-lg stats-card" style="background: linear-gradient(135deg, rgba(29, 78, 216, 0.9) 100%, rgba(42, 80, 186, 0.7) 100%);">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-white/80 text-sm font-medium">Menunggu</p>
@@ -125,7 +125,7 @@
                    class="w-full px-3 py-2 border border-white/30 rounded-lg bg-white/10 backdrop-blur text-white focus:ring-2 focus:ring-white/50">
         </div>
         <div class="flex items-end space-x-2">
-            <button type="submit" class="bg-white text-purple-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition flex items-center font-medium">
+            <button type="submit" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition flex items-center font-medium">
                 <i class="fas fa-search mr-2"></i>
                 Filter
             </button>

@@ -1,6 +1,6 @@
 {{-- resources/views/articles/index.blade.php --}}
 @extends('layouts.app')
-@section('title', 'Artikel - Laboratorium Fisika Dasar')
+@section('title', 'Artikel - Laboratorium Fisika Komputasi')
 @section('content')
 
 <!-- Hero Section -->
@@ -43,10 +43,10 @@
         <div class="articles-hero-animate mb-8 opacity-0" data-animation="fade-up" data-delay="200">
             <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
                 <span class="text-white drop-shadow-lg">Artikel</span>
-                <span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg"> Laboratorium</span>
+                <span class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent drop-shadow-lg"> Laboratorium</span>
             </h1>
             <p class="text-xl md:text-2xl text-amber-100 max-w-3xl mx-auto leading-relaxed drop-shadow-md mb-8">
-                Temukan berita terkini, penelitian terdepan, dan perkembangan inovasi dari Laboratorium Fisika Dasar
+                Temukan berita terkini, penelitian terdepan, dan perkembangan inovasi dari Laboratorium Fisika Komputasi
             </p>
         </div>
     </div>
@@ -82,7 +82,7 @@
                         <img src="{{ $articles->first()['image'] }}"
                              alt="{{ $articles->first()['title'] }}"
                              class="w-full h-64 lg:h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                             onerror="this.src='{{ asset('storage/article/default.jpg') }}'">
+                             onerror="this.src='{{ asset('images/article/default.jpg') }}'">
                     </div>
                     <div class="lg:w-1/2 p-8 lg:p-12">
                         <div class="flex items-center mb-4">
@@ -128,7 +128,7 @@
                     <img src="{{ $article['image'] }}"
                          alt="{{ $article['title'] }}"
                          class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700"
-                         onerror="this.src='{{ asset('storage/article/default.jpg') }}'">
+                         onerror="this.src='{{ asset('images/article/default.jpg') }}'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="absolute top-4 left-4">
                         <div class="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
@@ -166,7 +166,7 @@
         @if($articles->count() == 0)
         <div class="text-center py-16">
             <div class="max-w-md mx-auto">
-                <img src="{{ asset('storage/article/default.jpg') }}"
+                <img src="{{ asset('images/article/default.jpg') }}"
                      alt="No articles"
                      class="w-32 h-32 mx-auto mb-6 rounded-lg opacity-50">
                 <h3 class="text-xl font-semibold text-gray-900 mb-2">Belum Ada Artikel</h3>
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', function() {
     images.forEach(img => {
         img.addEventListener('error', function() {
             if (!this.src.includes('default.jpg')) {
-                this.src = '{{ asset("storage/article/default.jpg") }}';
+                this.src = '{{ asset("images/article/default.jpg") }}';
             }
         });
     });

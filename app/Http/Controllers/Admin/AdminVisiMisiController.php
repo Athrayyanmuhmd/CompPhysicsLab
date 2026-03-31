@@ -32,27 +32,23 @@ class AdminVisiMisiController extends Controller
     public function updateProfil(Request $request)
     {
         $request->validate([
-            'namaLaboratorium' => 'required|string|max:255',
+            'namaLaboratorium'    => 'required|string|max:255',
             'tentangLaboratorium' => 'required|string',
-            'visi' => 'required|string',
-            'misiId' => 'required|exists:misi,id',
+            'visi'                => 'required|string',
+            'misiId'              => 'nullable|exists:misi,id',
+            'jumlah_komputer'     => 'required|integer|min:1|max:9999',
         ]);
+
+        $data = $request->only(['namaLaboratorium', 'tentangLaboratorium', 'visi', 'jumlah_komputer']);
+        if ($request->misiId) {
+            $data['misiId'] = $request->misiId;
+        }
 
         $profil = ProfilLaboratorium::first();
         if ($profil) {
-            $profil->update([
-                'namaLaboratorium' => $request->namaLaboratorium,
-                'tentangLaboratorium' => $request->tentangLaboratorium,
-                'visi' => $request->visi,
-                'misiId' => $request->misiId,
-            ]);
+            $profil->update($data);
         } else {
-            ProfilLaboratorium::create([
-                'namaLaboratorium' => $request->namaLaboratorium,
-                'tentangLaboratorium' => $request->tentangLaboratorium,
-                'visi' => $request->visi,
-                'misiId' => $request->misiId,
-            ]);
+            ProfilLaboratorium::create($data);
         }
 
         return redirect()->route('admin.visimisi.index')

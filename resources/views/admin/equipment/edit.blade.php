@@ -243,9 +243,10 @@
                             @if($equipment->image_url)
                                 <div class="mb-4">
                                     <p class="text-sm text-gray-600 mb-2">Gambar saat ini:</p>
-                                    <img src="{{ asset('storage/' . $equipment->image_url) }}"
+                                    <img src="{{ $equipment->image_asset }}"
                                          alt="{{ $equipment->nama }}"
-                                         class="max-w-full h-32 object-cover rounded border">
+                                         class="max-w-full h-32 object-cover rounded border"
+                                         onerror="this.src='{{ asset('images/equipment/default.jpg') }}'">
                                 </div>
                             @endif
 

@@ -85,7 +85,7 @@
                             <div class="flex-shrink-0">
                                 <div class="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden">
                                     @if($item->alat->image_url)
-                                        <img src="{{ asset('storage/' . $item->alat->image_url) }}"
+                                        <img src="{{ $item->alat->image_asset }}"
                                              alt="{{ $item->alat->nama }}"
                                              class="w-full h-full object-cover">
                                     @else
@@ -412,7 +412,7 @@
                                 <!-- Equipment Image -->
                                 <div class="w-16 h-16 bg-white rounded-lg overflow-hidden border">
                                     @if($item->alat->image_url)
-                                        <img src="{{ asset('storage/' . $item->alat->image_url) }}"
+                                        <img src="{{ $item->alat->image_asset }}"
                                              alt="{{ $item->alat->nama }}"
                                              class="w-full h-full object-cover">
                                     @else
@@ -841,15 +841,15 @@ function sendStatusUpdate(type) {
 
     switch(type) {
         case 'approved':
-            message = `Halo ${borrowerName},\n\n✅ *PEMINJAMAN ALAT DISETUJUI*\n\nPeminjaman alat Anda di Laboratorium Fisika Dasar telah disetujui!\n\n📅 Periode Peminjaman:\n• Mulai: ${loanDate}\n• Berakhir: ${returnDate}\n\n🔧 Alat yang Dipinjam:\n${equipmentList}\n\n📋 *PENTING - Silakan ambil alat dengan membawa:*\n• Kartu identitas (KTM/KTP)\n• Screenshot pesan ini\n• Mengikuti protokol keselamatan lab\n\n⚠️ Harap ambil alat sesuai jadwal yang telah ditentukan.\n\n🔗 Pantau status: ${trackingUrl}\n\nTerima kasih!\nLab Fisika Dasar`;
+            message = `Halo ${borrowerName},\n\n✅ *PEMINJAMAN ALAT DISETUJUI*\n\nPeminjaman alat Anda di Laboratorium Fisika Komputasi telah disetujui!\n\n📅 Periode Peminjaman:\n• Mulai: ${loanDate}\n• Berakhir: ${returnDate}\n\n🔧 Alat yang Dipinjam:\n${equipmentList}\n\n📋 *PENTING - Silakan ambil alat dengan membawa:*\n• Kartu identitas (KTM/KTP)\n• Screenshot pesan ini\n• Mengikuti protokol keselamatan lab\n\n⚠️ Harap ambil alat sesuai jadwal yang telah ditentukan.\n\n🔗 Pantau status: ${trackingUrl}\n\nTerima kasih!\nLab Fisika Komputasi`;
             break;
 
         case 'rejected':
-            message = `Halo ${borrowerName},\n\n❌ *PEMINJAMAN TIDAK DAPAT DIPROSES*\n\nMohon maaf, pengajuan peminjaman alat Anda tidak dapat kami proses saat ini.\n\n🔧 Alat yang Diminta:\n${equipmentList}\n\n💡 *Kemungkinan penyebab:*\n• Alat tidak tersedia pada periode tersebut\n• Kapasitas peminjaman penuh\n• Data pengajuan tidak lengkap\n\nSilakan hubungi admin untuk informasi lebih lanjut atau ajukan ulang dengan jadwal yang berbeda.\n\n🔗 Status pengajuan: ${trackingUrl}\n\nTerima kasih atas pengertiannya.\nLab Fisika Dasar`;
+            message = `Halo ${borrowerName},\n\n❌ *PEMINJAMAN TIDAK DAPAT DIPROSES*\n\nMohon maaf, pengajuan peminjaman alat Anda tidak dapat kami proses saat ini.\n\n🔧 Alat yang Diminta:\n${equipmentList}\n\n💡 *Kemungkinan penyebab:*\n• Alat tidak tersedia pada periode tersebut\n• Kapasitas peminjaman penuh\n• Data pengajuan tidak lengkap\n\nSilakan hubungi admin untuk informasi lebih lanjut atau ajukan ulang dengan jadwal yang berbeda.\n\n🔗 Status pengajuan: ${trackingUrl}\n\nTerima kasih atas pengertiannya.\nLab Fisika Komputasi`;
             break;
 
         case 'pickup':
-            message = `Halo ${borrowerName},\n\n📦 *ALAT SIAP DIAMBIL*\n\nAlat laboratorium yang Anda pinjam sudah siap untuk diambil!\n\n🔧 Alat yang Siap Diambil:\n${equipmentList}\n\n📍 *Lokasi:* Lab Fisika Dasar - Gedung Akademik\n⏰ *Jam Operasional:* 08:00 - 16:00 WIB\n\n📋 *Jangan lupa bawa:*\n• Kartu identitas (KTM/KTP)\n• Screenshot pesan ini\n\n📅 *Batas Pengembalian:* ${returnDate}\n\n🔗 Pantau status: ${trackingUrl}\n\nTerima kasih!\nLab Fisika Dasar`;
+            message = `Halo ${borrowerName},\n\n📦 *ALAT SIAP DIAMBIL*\n\nAlat laboratorium yang Anda pinjam sudah siap untuk diambil!\n\n🔧 Alat yang Siap Diambil:\n${equipmentList}\n\n📍 *Lokasi:* Lab Fisika Komputasi - Gedung Akademik\n⏰ *Jam Operasional:* 08:00 - 16:00 WIB\n\n📋 *Jangan lupa bawa:*\n• Kartu identitas (KTM/KTP)\n• Screenshot pesan ini\n\n📅 *Batas Pengembalian:* ${returnDate}\n\n🔗 Pantau status: ${trackingUrl}\n\nTerima kasih!\nLab Fisika Komputasi`;
             break;
 
         case 'reminder':
@@ -865,11 +865,11 @@ function sendStatusUpdate(type) {
                 message += `Batas waktu pengembalian alat tinggal ${daysLeft} hari lagi.\n\n`;
             }
 
-            message += `🔧 Alat yang Harus Dikembalikan:\n${equipmentList}\n\n📅 *Batas Pengembalian:* ${returnDate}\n\n📍 *Segera kembalikan ke:*\nLab Fisika Dasar - Gedung Akademik\nJam operasional: 08:00 - 16:00 WIB\n\n⚠️ Keterlambatan dapat mempengaruhi peminjaman selanjutnya.\n\n🔗 Status: ${trackingUrl}\n\nTerima kasih atas perhatiannya!\nLab Fisika Dasar`;
+            message += `🔧 Alat yang Harus Dikembalikan:\n${equipmentList}\n\n📅 *Batas Pengembalian:* ${returnDate}\n\n📍 *Segera kembalikan ke:*\nLab Fisika Komputasi - Gedung Akademik\nJam operasional: 08:00 - 16:00 WIB\n\n⚠️ Keterlambatan dapat mempengaruhi peminjaman selanjutnya.\n\n🔗 Status: ${trackingUrl}\n\nTerima kasih atas perhatiannya!\nLab Fisika Komputasi`;
             break;
 
         case 'completed':
-            message = `Halo ${borrowerName},\n\n✅ *PEMINJAMAN SELESAI*\n\nTerima kasih! Peminjaman alat Anda telah selesai:\n\n🔧 Alat yang Dikembalikan:\n${equipmentList}\n\n📊 *Status:* Lengkap dan Selesai\n\n🙏 Terima kasih telah:\n• Menggunakan fasilitas lab dengan baik\n• Mengembalikan alat tepat waktu\n• Menjaga kondisi alat\n\nKami berharap dapat melayani Anda kembali di masa mendatang.\n\n🔗 Riwayat: ${trackingUrl}\n\nSalam,\nLab Fisika Dasar`;
+            message = `Halo ${borrowerName},\n\n✅ *PEMINJAMAN SELESAI*\n\nTerima kasih! Peminjaman alat Anda telah selesai:\n\n🔧 Alat yang Dikembalikan:\n${equipmentList}\n\n📊 *Status:* Lengkap dan Selesai\n\n🙏 Terima kasih telah:\n• Menggunakan fasilitas lab dengan baik\n• Mengembalikan alat tepat waktu\n• Menjaga kondisi alat\n\nKami berharap dapat melayani Anda kembali di masa mendatang.\n\n🔗 Riwayat: ${trackingUrl}\n\nSalam,\nLab Fisika Komputasi`;
             break;
 
         default:
@@ -934,7 +934,7 @@ function sendMessage() {
         fullMessage += `\n\n🔗 Pantau status peminjaman: ${trackingUrl}`;
     }
 
-    fullMessage += `\n\nSalam,\nAdmin Laboratorium Fisika Dasar`;
+    fullMessage += `\n\nSalam,\nAdmin Laboratorium Fisika Komputasi`;
 
     try {
         const formattedPhone = borrowerPhone.replace(/^0/, '62');

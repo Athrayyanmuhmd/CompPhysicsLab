@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\BiodataPengurus;
 use App\Models\Gambar;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class AdminStaffController extends Controller
 {
@@ -57,38 +57,17 @@ class AdminStaffController extends Controller
 
             // 2. Handle foto jika ada
             if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
-                $foto = $request->file('foto');
+                $path = $request->file('foto')->store('staff', 'public');
 
-                // Path direktori staff
-                $staffDir = public_path('images/staff');
+                Log::info('Photo stored successfully', ['path' => $path]);
 
-                // Pastikan direktori ada
-                if (!is_dir($staffDir)) {
-                    mkdir($staffDir, 0755, true);
-                }
+                $gambar = new Gambar();
+                $gambar->pengurus_id = $staff->id;
+                $gambar->url = $path; // e.g. staff/filename.jpg
+                $gambar->kategori = 'PENGURUS';
+                $gambar->save();
 
-                // Generate nama file unik
-                $fileName = time() . '_' . Str::random(10) . '.' . $foto->getClientOriginalExtension();
-
-                // Path lengkap file
-                $filePath = $staffDir . '/' . $fileName;
-
-                // Pindahkan file
-                if ($foto->move($staffDir, $fileName)) {
-                    Log::info('Photo moved successfully', ['path' => $filePath]);
-
-                    // Simpan ke database (hanya nama file, bukan full path)
-                    $gambar = new Gambar();
-                    $gambar->pengurus_id = $staff->id;
-                    $gambar->url = 'images/staff/' . $fileName; // Relative path dari public
-                    $gambar->kategori = 'PENGURUS';
-                    $gambar->save();
-
-                    Log::info('Photo record created', ['gambar_id' => $gambar->id]);
-                } else {
-                    Log::error('Failed to move uploaded file');
-                    throw new \Exception('Gagal menyimpan file foto');
-                }
+                Log::info('Photo record created', ['gambar_id' => $gambar->id]);
             }
 
             return redirect()->route('admin.staff.index')
@@ -128,7 +107,7 @@ class AdminStaffController extends Controller
                     'id' => $staff->id,
                     'nama' => $staff->nama,
                     'jabatan' => $staff->jabatan,
-                    'foto' => $foto ? asset($foto->url) : null
+                    'foto' => $foto ? asset('storage/' . $foto->url) : null
                 ]);
             }
 
@@ -174,54 +153,33 @@ class AdminStaffController extends Controller
 
             // Handle foto jika ada
             if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
-                $foto = $request->file('foto');
-
-                // Path direktori staff
-                $staffDir = public_path('images/staff');
-
-                // Pastikan direktori ada
-                if (!is_dir($staffDir)) {
-                    mkdir($staffDir, 0755, true);
-                }
-
-                // Generate nama file unik
-                $fileName = time() . '_' . Str::random(10) . '.' . $foto->getClientOriginalExtension();
-
                 // Cari foto lama untuk dihapus
                 $existingFoto = Gambar::where('pengurus_id', $staff->id)
                                 ->where('kategori', 'PENGURUS')
                                 ->latest()
                                 ->first();
 
-                // Hapus file lama jika ada
-                if ($existingFoto) {
-                    $oldFilePath = public_path($existingFoto->url);
-                    if (file_exists($oldFilePath)) {
-                        unlink($oldFilePath);
-                        Log::info('Old photo deleted', ['path' => $oldFilePath]);
-                    }
+                // Hapus file lama dari storage
+                if ($existingFoto && Storage::disk('public')->exists($existingFoto->url)) {
+                    Storage::disk('public')->delete($existingFoto->url);
+                    Log::info('Old photo deleted', ['url' => $existingFoto->url]);
                 }
 
-                // Pindahkan file baru
-                if ($foto->move($staffDir, $fileName)) {
-                    Log::info('New photo moved successfully');
+                // Simpan file baru
+                $path = $request->file('foto')->store('staff', 'public');
+                Log::info('New photo stored successfully', ['path' => $path]);
 
-                    if ($existingFoto) {
-                        // Update record yang ada
-                        $existingFoto->url = 'images/staff/' . $fileName;
-                        $existingFoto->save();
-                        Log::info('Existing photo record updated');
-                    } else {
-                        // Buat record baru
-                        $gambar = new Gambar();
-                        $gambar->pengurus_id = $staff->id;
-                        $gambar->url = 'images/staff/' . $fileName;
-                        $gambar->kategori = 'PENGURUS';
-                        $gambar->save();
-                        Log::info('New photo record created');
-                    }
+                if ($existingFoto) {
+                    $existingFoto->url = $path;
+                    $existingFoto->save();
+                    Log::info('Existing photo record updated');
                 } else {
-                    throw new \Exception('Gagal menyimpan file foto');
+                    $gambar = new Gambar();
+                    $gambar->pengurus_id = $staff->id;
+                    $gambar->url = $path;
+                    $gambar->kategori = 'PENGURUS';
+                    $gambar->save();
+                    Log::info('New photo record created');
                 }
             }
 
@@ -251,10 +209,9 @@ class AdminStaffController extends Controller
                     ->get();
 
             foreach ($photos as $photo) {
-                $filePath = public_path($photo->url);
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                    Log::info('Photo file deleted', ['path' => $filePath]);
+                if (Storage::disk('public')->exists($photo->url)) {
+                    Storage::disk('public')->delete($photo->url);
+                    Log::info('Photo file deleted', ['url' => $photo->url]);
                 }
                 $photo->delete();
             }

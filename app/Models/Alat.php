@@ -93,6 +93,25 @@ class Alat extends Model
     }
 
     /**
+     * Accessor untuk mendapatkan URL gambar yang benar
+     * Menangani path lama (public/images/equipment/) dan baru (storage/equipment/)
+     */
+    public function getImageAssetAttribute()
+    {
+        if (empty($this->image_url)) {
+            return asset('images/equipment/default.jpg');
+        }
+
+        // Uploaded via Storage disk (e.g., 'equipment/filename.jpg')
+        if (str_starts_with($this->image_url, 'equipment/')) {
+            return asset('storage/' . $this->image_url);
+        }
+
+        // Seeder/legacy data (just filename, e.g., 'oscilloscope.jpeg')
+        return asset('images/equipment/' . $this->image_url);
+    }
+
+    /**
      * Accessor untuk total alat
      */
     public function getTotalAlatAttribute()

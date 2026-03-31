@@ -134,7 +134,7 @@ class ArticleController extends Controller
         }
 
         // Default image
-        return asset('storage/article/default.jpg');
+        return asset('images/article/default.jpg');
     }
 
     private function getCorrectGambarUrl($gambar)
@@ -157,7 +157,7 @@ class ArticleController extends Controller
         }
 
         // Default image jika file tidak ditemukan
-        return asset('storage/article/default.jpg');
+        return asset('images/article/default.jpg');
     }
 
     private function isFeatured($artikel)

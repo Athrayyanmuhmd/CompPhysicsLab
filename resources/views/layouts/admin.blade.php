@@ -132,7 +132,7 @@
         }
 
         .admin-header-role {
-            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 1) 0%, rgba(37, 99, 235, 1) 0%);
             color: white;
             padding: 2px 8px;
             border-radius: 12px;
@@ -151,7 +151,7 @@
 <body class="bg-gray-50">
     <!-- Header -->
     <header class="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white shadow-lg relative">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="w-full max-w-[1880px] px-4 py-4 flex justify-between items-center gap-0 mx-4">
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-4 shadow-lg">
                     <i class="fas fa-atom text-blue-600"></i>
@@ -246,7 +246,8 @@
                             <span>Kelola Staff</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- Kelola Alat & Peminjaman: disembunyikan sementara, aktifkan kembali jika diperlukan --}}
+                    {{-- <li>
                         <a href="{{ route('admin.equipment.index') }}" class="nav-link flex items-center py-3 px-4 rounded-lg {{ request()->routeIs('admin.equipment.*') ? 'active' : '' }}">
                             <i class="fas fa-tools mr-3 w-5"></i>
                             <span>Kelola Alat</span>
@@ -257,7 +258,7 @@
                             <i class="fas fa-exchange-alt mr-3 w-5"></i>
                             <span>Peminjaman Alat</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('admin.visits.index') }}" class="nav-link flex items-center py-3 px-4 rounded-lg {{ request()->routeIs('admin.visits.*') ? 'active' : '' }}">
                             <i class="fas fa-clipboard-check mr-3 w-5"></i>
@@ -317,18 +318,6 @@
                     @endif
                 </ul>
 
-                <!-- Footer Info in Sidebar -->
-                <div class="mt-8 pt-4 border-t border-white/20">
-                    <div class="px-4 py-2 text-xs text-blue-200">
-                        <div class="flex items-center justify-between">
-                            <span>Version 1.0</span>
-                            <span>{{ date('Y') }}</span>
-                        </div>
-                        <div class="mt-1 text-center">
-                            Lab Fisika Dasar
-                        </div>
-                    </div>
-                </div>
             </nav>
         </aside>
 

@@ -6,7 +6,6 @@ use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\EquipmentLoanController;
 use App\Http\Controllers\TestingServicesController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\VisitSchedulingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
