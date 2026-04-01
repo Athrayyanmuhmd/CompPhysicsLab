@@ -1,7 +1,7 @@
 {{-- resources/views/services/equipment-tracking.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Lacak Peminjaman - Laboratorium Fisika Dasar')
+@section('title', 'Lacak Peminjaman - Laboratorium Fisika Komputasi')
 
 @section('content')
 <!-- Hero Section -->
@@ -20,7 +20,10 @@
         <div class="scroll-animate mb-8 opacity-0" data-animation="fade-up">
             <h1 class="font-poppins text-4xl md:text-6xl font-bold leading-tight mb-6">
                 <span class="text-white">Lacak</span>
-                <span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg"> Peminjaman</span>
+                <span class="bg-clip-text text-transparent drop-shadow-lg"
+                    style="background-image: linear-gradient(90deg, rgba(250, 204, 21, 1) 0%, rgba(255, 255, 255, 1) 0%); -webkit-background-clip: text; color: transparent;">
+                    Peminjaman
+                </span>
             </h1>
             <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
                 Pantau status peminjaman alat laboratorium Anda secara real-time
@@ -412,14 +415,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function shareWhatsApp() {
-    const message = `Halo Admin Laboratorium Fisika Dasar,\n\nSaya ingin menanyakan status permohonan peminjaman alat dengan:\n\nID: {{ $peminjaman->reference_number }}\nNama: {{ $peminjaman->namaPeminjam }}\nTanggal Mulai: {{ $peminjaman->tanggal_pinjam->format('d M Y') }}\nJumlah Alat: {{ $peminjaman->total_types }} jenis ({{ $peminjaman->total_quantity }} unit)\n\nMohon informasi lebih lanjut.\n\nTerima kasih.`;
+    const message = `Halo Admin Laboratorium Fisika Komputasi,\n\nSaya ingin menanyakan status permohonan peminjaman alat dengan:\n\nID: {{ $peminjaman->reference_number }}\nNama: {{ $peminjaman->namaPeminjam }}\nTanggal Mulai: {{ $peminjaman->tanggal_pinjam->format('d M Y') }}\nJumlah Alat: {{ $peminjaman->total_types }} jenis ({{ $peminjaman->total_quantity }} unit)\n\nMohon informasi lebih lanjut.\n\nTerima kasih.`;
     const phoneNumber = '6287801482963'; // Sesuaikan dengan nomor admin
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
 
 function shareReminderWhatsApp() {
-    let message = `Halo Admin Laboratorium Fisika Dasar,\n\nSaya ingin mengkonfirmasi status peminjaman alat:\n\nID: {{ $peminjaman->reference_number }}\nNama: {{ $peminjaman->namaPeminjam }}\nStatus: {{ $peminjaman->status_text }}\n`;
+    let message = `Halo Admin Laboratorium Fisika Komputasi,\n\nSaya ingin mengkonfirmasi status peminjaman alat:\n\nID: {{ $peminjaman->reference_number }}\nNama: {{ $peminjaman->namaPeminjam }}\nStatus: {{ $peminjaman->status_text }}\n`;
 
     @if($peminjaman->status === 'APPROVED')
         message += `\nKapan saya bisa mengambil alat yang sudah disetujui?\n`;
@@ -668,7 +671,7 @@ document.addEventListener('DOMContentLoaded', function() {
             totalUnits: '{{ $peminjaman->total_quantity }}'
         };
 
-        let message = `Halo Admin Laboratorium Fisika Dasar,\n\n`;
+        let message = `Halo Admin Laboratorium Fisika Komputasi,\n\n`;
 
         switch (messageType) {
             case 'status_inquiry':

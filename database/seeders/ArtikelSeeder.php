@@ -22,7 +22,7 @@ class ArtikelSeeder extends Seeder
         $artikels = [
             [
                 'nama_acara' => 'Pengembangan Sistem Monitoring Seismik Real-time',
-                'deskripsi' => 'Laboratorium berhasil mengembangkan sistem monitoring aktivitas seismik yang dapat memberikan peringatan dini dengan akurasi tinggi. Sistem ini menggunakan teknologi sensor terbaru dan algoritma machine learning untuk analisis data seismik. Laboratorium Fisika Dasar telah berhasil mengembangkan sistem monitoring aktivitas seismik real-time yang revolusioner. Sistem ini menggunakan teknologi sensor terbaru dan algoritma machine learning untuk memberikan peringatan dini gempa bumi dengan akurasi tinggi.',
+                'deskripsi' => 'Laboratorium berhasil mengembangkan sistem monitoring aktivitas seismik yang dapat memberikan peringatan dini dengan akurasi tinggi. Sistem ini menggunakan teknologi sensor terbaru dan algoritma machine learning untuk analisis data seismik. Laboratorium Fisika Komputasi telah berhasil mengembangkan sistem monitoring aktivitas seismik real-time yang revolusioner. Sistem ini menggunakan teknologi sensor terbaru dan algoritma machine learning untuk memberikan peringatan dini gempa bumi dengan akurasi tinggi.',
                 'penulis' => 'Dr. Ahmad Rahman',
                 'tanggal_acara' => Carbon::now()->subDays(7),
                 'image' => 'article/article-1.jpeg'

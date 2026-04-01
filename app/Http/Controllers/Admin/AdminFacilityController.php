@@ -113,8 +113,8 @@ class AdminFacilityController extends Controller
     private function createDefaultFacility()
     {
         return Facility::create([
-            'title' => 'Fasilitas Laboratorium Fisika Dasar',
-            'description' => 'Laboratorium Fisika Dasar dilengkapi dengan berbagai fasilitas modern untuk mendukung kegiatan praktikum dan pembelajaran mahasiswa.',
+            'title' => 'Fasilitas Laboratorium Fisika Komputasi',
+            'description' => 'Laboratorium Fisika Komputasi dilengkapi dengan berbagai fasilitas modern untuk mendukung kegiatan praktikum dan pembelajaran mahasiswa.',
             'facility_points' => [
                 'Ruang laboratorium yang luas dan nyaman',
                 'Peralatan praktikum lengkap dan modern',

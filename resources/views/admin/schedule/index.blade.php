@@ -148,6 +148,11 @@
             <div class="text-center text-sm font-medium text-gray-500 py-2">Sab</div>
             <div class="text-center text-sm font-medium text-gray-500 py-2">Min</div>
 
+            <!-- Empty offset cells for first day alignment -->
+            @for($i = 0; $i < $firstDayOffset; $i++)
+                <div></div>
+            @endfor
+
             <!-- Calendar Days -->
             @foreach($monthData as $day => $data)
                 <div class="day-card p-3 rounded-lg text-center

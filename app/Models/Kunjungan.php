@@ -75,7 +75,7 @@ class Kunjungan extends Model
     // Generate WhatsApp message template
     public function getWhatsAppMessageAttribute()
     {
-        $message = "*🔬 PENGAJUAN KUNJUNGAN LABORATORIUM FISIKA DASAR*\n\n";
+        $message = "*🔬 PENGAJUAN KUNJUNGAN LABORATORIUM FISIKA KOMPUTASI*\n\n";
         $message .= "📋 *INFORMASI PENGUNJUNG*\n";
         $message .= "👤 Nama: {$this->namaPengunjung}\n";
         $message .= "🏢 Institusi: {$this->institution}\n";

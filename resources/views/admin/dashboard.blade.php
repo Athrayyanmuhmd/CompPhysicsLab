@@ -113,7 +113,7 @@
     }
 
     .quick-action-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, rgba(102, 126, 234, 1) 0%, rgba(30, 58, 138, 1) 0%);
         border-radius: 12px;
         color: white;
         transition: transform 0.2s ease;
@@ -126,17 +126,17 @@
 @endsection
 
 @section('content')
-<div class="space-y-6">
+<div class="space-y-6 w-full px-0 md:px-2 lg:px-4">
     <!-- Header Section -->
     <div class="fade-up">
         <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p class="text-gray-600 mt-2">Selamat datang di sistem manajemen Laboratorium Fisika Dasar</p>
+        <p class="text-gray-600 mt-2">Selamat datang di sistem manajemen Laboratorium Fisika Komputasi</p>
     </div>
 
     <!-- Statistics Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
         <!-- Peminjaman Pending -->
-        <div class="stat-card blue p-6">
+        <div class="stat-card blue p-6 hidden">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-600">Peminjaman Pending</p>
@@ -156,7 +156,7 @@
                     <i class="fas fa-exchange-alt text-blue-600"></i>
                 </div>
             </div>
-            <div class="mt-4">
+            <div class="mt-4 hidden">
                 <a href="{{ route('admin.peminjaman.index') }}"
                    class="text-sm text-blue-600 hover:text-blue-700 font-medium">
                     Lihat semua →
@@ -182,19 +182,19 @@
                     </p>
                 </div>
                 <div class="icon-container bg-purple-50">
-                    <i class="fas fa-calendar-check text-purple-600"></i>
+                    <i class="fas fa-calendar-check text-blue-600"></i>
                 </div>
             </div>
             <div class="mt-4">
                 <a href="{{ route('admin.visits.index') }}"
-                   class="text-sm text-purple-600 hover:text-purple-700 font-medium">
+                   class="text-sm text-blue-900 hover:text-blue-800 font-medium">
                     Lihat semua →
                 </a>
             </div>
         </div>
 
         <!-- Total Equipment -->
-        <div class="stat-card green p-6">
+        <div class="stat-card green p-6 hidden">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-600">Total Peralatan</p>
@@ -214,7 +214,7 @@
                     <i class="fas fa-tools text-green-600"></i>
                 </div>
             </div>
-            <div class="mt-4">
+            <div class="mt-4 hidden">
                 <a href="{{ route('admin.equipment.index') }}"
                    class="text-sm text-green-600 hover:text-green-700 font-medium">
                     Kelola peralatan →
@@ -282,8 +282,8 @@
     </div>
 
     <!-- Quick Actions -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="quick-action-card p-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <div class="quick-action-card p-6 w-full">
             <div class="flex items-center justify-between">
                 <div>
                     <h3 class="text-lg font-semibold">Kelola Jadwal</h3>
@@ -299,7 +299,7 @@
             </div>
         </div>
 
-        <div class="quick-action-card p-6" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">
+        <div class="quick-action-card p-6 w-full" style="background: linear-gradient(135deg, rgba(102, 126, 234, 1) 0%, rgba(30, 58, 138, 1) 0%)">
             <div class="flex items-center justify-between">
                 <div>
                     <h3 class="text-lg font-semibold">Kelola Artikel</h3>
@@ -337,7 +337,7 @@
     <!-- Recent Activities -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Recent Peminjaman -->
-        <div class="activity-card">
+        <div class="activity-card hidden w-full">
             <div class="p-6 border-b">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-semibold text-gray-900">Peminjaman Terbaru</h3>
@@ -381,7 +381,7 @@
                 @endforelse
             </div>
             @if($recentPeminjaman->count() > 0)
-            <div class="p-4 border-t bg-gray-50">
+            <div class="p-4 border-t bg-gray-50 hidden">
                 <a href="{{ route('admin.peminjaman.index') }}"
                    class="text-sm text-blue-600 hover:text-blue-700 font-medium">
                     Lihat semua peminjaman →
@@ -391,11 +391,11 @@
         </div>
 
         <!-- Recent Kunjungan -->
-        <div class="activity-card">
+        <div class="activity-card w-full">
             <div class="p-6 border-b">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-semibold text-gray-900">Kunjungan Terbaru</h3>
-                    <i class="fas fa-calendar-check text-purple-500"></i>
+                    <i class="fas fa-calendar-check text-blue-600"></i>
                 </div>
             </div>
             <div class="max-h-80 overflow-y-auto">
@@ -411,8 +411,8 @@
                 @forelse($recentKunjungan as $kunjungan)
                 <div class="activity-item flex items-center justify-between">
                     <div class="flex items-center space-x-3">
-                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-calendar-check text-purple-600 text-xs"></i>
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-calendar-check text-blue-600 text-xs"></i>
                         </div>
                         <div>
                             <p class="font-medium text-gray-900 text-sm">
@@ -441,7 +441,7 @@
             @if($recentKunjungan->count() > 0)
             <div class="p-4 border-t bg-gray-50">
                 <a href="{{ route('admin.visits.index') }}"
-                   class="text-sm text-purple-600 hover:text-purple-700 font-medium">
+                   class="text-sm text-blue-600 hover:text-blue-700 font-medium">
                     Lihat semua kunjungan →
                 </a>
             </div>

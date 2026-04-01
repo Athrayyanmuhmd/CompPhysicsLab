@@ -14,8 +14,8 @@ class FacilitiesController extends Controller
         // Jika belum ada data fasilitas, buat default
         if (!$facility) {
             $facility = new Facility();
-            $facility->title = 'Fasilitas Laboratorium Fisika Dasar';
-            $facility->description = 'Laboratorium Fisika Dasar dilengkapi dengan berbagai fasilitas modern untuk mendukung kegiatan praktikum dan pembelajaran mahasiswa.';
+            $facility->title = 'Fasilitas Laboratorium Fisika Komputasi';
+            $facility->description = 'Laboratorium Fisika Komputasi dilengkapi dengan berbagai fasilitas modern untuk mendukung kegiatan praktikum dan pembelajaran mahasiswa.';
             $facility->facility_points = [
                 'Ruang laboratorium yang luas dan nyaman',
                 'Peralatan praktikum lengkap dan modern',

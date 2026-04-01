@@ -38,9 +38,9 @@
                         <!-- Simple Dropdown Menu -->
                         <div class="absolute top-full left-0 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 mt-2">
                             <div class="py-2">
-                                <a href="{{ route('equipment.loan') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">
+                                {{-- <a href="{{ route('equipment.loan') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">
                                     Peminjaman Alat
-                                </a>
+                                </a> --}}
 
                                 <a href="{{ route('visit.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">
                                     Jadwalkan Kunjungan
@@ -81,12 +81,12 @@
                     <i class="fas fa-chevron-down text-sm"></i>
                 </button>
                 <div class="mobile-dropdown-content hidden pl-6 space-y-1">
-                    <a href="{{ route('equipment.loan') }}" class="mobile-nav-link block px-3 py-2 text-gray-300 hover:text-yellow-400">
+                    {{-- <a href="{{ route('equipment.loan') }}" class="mobile-nav-link block px-3 py-2 text-gray-300 hover:text-yellow-400">
                         Peminjaman Alat
-                    </a>
-                    {{-- <a href="{{ route('visit.index') }}" class="mobile-nav-link block px-3 py-2 text-gray-300 hover:text-yellow-400">
-                        Layanan Pengujian
                     </a> --}}
+                    <a href="{{ route('visit.index') }}" class="mobile-nav-link block px-3 py-2 text-gray-300 hover:text-yellow-400">
+                        Jadwalkan Kunjungan
+                    </a>
                 </div>
             </div>
             <a href="{{ route('facilities') }}#fasilitas" class="mobile-nav-link block px-3 py-2 text-white hover:text-yellow-400 font-medium">Fasilitas</a>

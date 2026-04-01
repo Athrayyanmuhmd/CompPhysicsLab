@@ -1,11 +1,11 @@
-# 🔬 Website Laboratorium Fisika Dasar
+# 🔬 Website Laboratorium Fisika Komputasi
 
 [![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg)](https://laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-8.1+-blue.svg)](https://php.net)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-38B2AC.svg)](https://tailwindcss.com)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange.svg)](https://mysql.com)
 
-Website modern dan responsif untuk Laboratorium Fisika Dasar Departemen Fisika FMIPA Universitas Syiah Kuala, dibangun dengan Laravel dan dilengkapi sistem manajemen laboratorium yang komprehensif.
+Website modern dan responsif untuk Laboratorium Fisika Komputasi Departemen Fisika FMIPA Universitas Syiah Kuala, dibangun dengan Laravel dan dilengkapi sistem manajemen laboratorium yang komprehensif.
 
 ## 📋 Deskripsi Proyek
 
@@ -308,7 +308,7 @@ php artisan test
 | Nama | Program Studi | NPM | Tanggung Jawab |
 |------|---------------|-----|----------------|
 | **Glenn Hakim** | S1 Informatika | 2208107010072 | Web Laboratorium Geofisika |
-| **Ahmad Syah Ramadhan** | S1 Informatika | 2208107010033 | Web Laboratorium Fisika Dasar |
+| **Ahmad Syah Ramadhan** | S1 Informatika | 2208107010033 | Web Laboratorium Fisika Komputasi |
 | **Rafli Afriza Nugraha** | S1 Informatika | 2208107010028 | Web Laboratorium Elektronika |
 | **Muhammad Bintang Indra Hidayat** | S1 Informatika | 2208107010023 | Web Laboratorium Fisika Lanjut |
 | **Willy Jonathan Arsyad** | S1 Informatika | 2208107010037 | Web Profil Jurusan Fisika |

@@ -1,7 +1,7 @@
 {{-- resources/views/facilities.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Fasilitas Laboratorium - Laboratorium Fisika Dasar')
+@section('title', 'Fasilitas Laboratorium - Laboratorium Fisika Komputasi')
 
 @section('content')
 <!-- Hero Section -->
@@ -46,7 +46,10 @@
         <div class="scroll-animate mb-8 opacity-0" data-animation="fade-up" data-delay="200">
             <h1 class="font-poppins text-5xl md:text-7xl font-bold leading-tight mb-6">
                 <span class="text-white">{{ $facility->title ?? 'Fasilitas' }}</span>
-                <span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg"> Laboratorium</span>
+                <span class="bg-clip-text text-transparent drop-shadow-lg"
+                    style="background-image: linear-gradient(90deg, rgba(250, 204, 21, 1) 0%, rgba(255, 255, 255, 1) 0%); -webkit-background-clip: text; color: transparent;">
+                    Laboratorium
+                </span>
             </h1>
         </div>
     </div>
@@ -66,7 +69,7 @@
             </h2>
             <div class="max-w-4xl mx-auto">
                 <p class="text-gray-600 text-lg md:text-xl leading-relaxed">
-                    {{ $facility->description ?? 'Laboratorium Fisika Dasar dilengkapi dengan berbagai fasilitas modern untuk mendukung kegiatan praktikum dan pembelajaran mahasiswa.' }}
+                    {{ $facility->description ?? 'Laboratorium Fisika Komputasi dilengkapi dengan berbagai fasilitas modern untuk mendukung kegiatan praktikum dan pembelajaran mahasiswa.' }}
                 </p>
             </div>
         </div>
@@ -104,7 +107,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($facility->images as $index => $image)
-                <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer" onclick="openImageModal('{{ Storage::url($image) }}', 'Laboratorium Fisika Dasar {{ $index + 1 }}')">
+                <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer" onclick="openImageModal('{{ Storage::url($image) }}', 'Laboratorium Fisika Komputasi {{ $index + 1 }}')">
                     <img src="{{ Storage::url($image) }}"
                          alt="Fasilitas Laboratorium {{ $index + 1 }}"
                          class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500">

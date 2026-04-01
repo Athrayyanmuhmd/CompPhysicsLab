@@ -1,7 +1,7 @@
 {{-- resources/views/services/visit-scheduling.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Jadwalkan Kunjungan - Laboratorium Fisika Dasar')
+@section('title', 'Jadwalkan Kunjungan - Laboratorium Fisika Komputasi')
 
 @section('content')
 <!-- Hero Section -->
@@ -54,7 +54,10 @@
         <div class="scroll-animate mb-8 opacity-0" data-animation="fade-up" data-delay="200">
             <h1 class="font-poppins text-5xl md:text-7xl font-bold leading-tight mb-6">
                 <span class="text-white">Jadwalkan</span>
-                <span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg"> Kunjungan</span>
+                <span class="bg-clip-text text-transparent drop-shadow-lg"
+                    style="background-image: linear-gradient(90deg, rgba(250, 204, 21, 1) 0%, rgba(255, 255, 255, 1) 0%); -webkit-background-clip: text; color: transparent;">
+                    Kunjungan
+                </span>
             </h1>
             <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
                 Rencanakan kunjungan Anda ke laboratorium fisika kami untuk eksplorasi mendalam dan pengalaman pembelajaran yang tak terlupakan
@@ -137,7 +140,7 @@
                     <div class="flex items-start space-x-3">
                         <i class="fas fa-lightbulb text-yellow-600 mt-1"></i>
                         <div class="text-sm text-yellow-700">
-                            <strong>Tips:</strong> Pastikan membawa kartu identitas, surat pengajuan, dan siap mengikuti briefing penggunaan alat untuk keamanan bersama. surat pengajuan kunjungan merujuk pada <a href="https://drive.google.com/file/d/1UMECW8-I1haaMoSVezYNgUbGNmWRr-5k/view?usp=sharing" target="_blank" rel="noopener noreferrer"><strong>SOP Laboratorium FISIKA DASAR</strong></a>
+                            <strong>Tips:</strong> Pastikan membawa kartu identitas, surat pengajuan, dan siap mengikuti briefing penggunaan alat untuk keamanan bersama. surat pengajuan kunjungan merujuk pada <a href="https://drive.google.com/file/d/1UMECW8-I1haaMoSVezYNgUbGNmWRr-5k/view?usp=sharing" target="_blank" rel="noopener noreferrer"><strong>SOP Laboratorium FISIKA KOMPUTASI</strong></a>
                         </div>
                     </div>
                 </div>
@@ -1138,7 +1141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function generateWhatsAppMessage(visitData, trackingUrl) {
         const adminPhone = '6287801482963'; // Ganti dengan nomor admin yang sebenarnya
 
-        let message = "*🔬 PENGAJUAN KUNJUNGAN LABORATORIUM FISIKA DASAR*\n\n";
+        let message = "*🔬 PENGAJUAN KUNJUNGAN LABORATORIUM FISIKA KOMPUTASI*\n\n";
         message += "📋 *INFORMASI PENGUNJUNG*\n";
         message += `👤 Nama: ${visitData.name}\n`;
         message += `🏢 Institusi: ${visitData.institution}\n`;
@@ -1272,6 +1275,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dateInput = document.getElementById('visit_date');
     const timeSelect = document.getElementById('visit_time');
     const timeSlotInfo = document.getElementById('timeSlotInfo');
+    const indonesianHolidays = @json($holidays);
 
     // Form submission handler - MODIFIED FOR WHATSAPP INTEGRATION
     if (form) {
@@ -1401,9 +1405,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const date = new Date(selectedDate);
             const day = date.getDay();
 
-            // Check if it's Sunday
-            if (day === 0) {
-                showToast('Laboratorium tutup pada hari Minggu. Silakan pilih hari lain.', 'warning');
+            // Check if it's a weekend (Saturday or Sunday)
+            if (day === 0 || day === 6) {
+                const dayName = day === 0 ? 'Minggu' : 'Sabtu';
+                showToast(`Laboratorium tutup pada hari ${dayName}. Silakan pilih hari kerja (Senin–Jumat).`, 'warning');
+                this.value = '';
+                resetTimeSlots();
+                return;
+            }
+
+            // Check if it's a public holiday
+            if (indonesianHolidays[selectedDate]) {
+                showToast(`Libur Nasional: ${indonesianHolidays[selectedDate]}. Silakan pilih hari lain.`, 'warning');
                 this.value = '';
                 resetTimeSlots();
                 return;

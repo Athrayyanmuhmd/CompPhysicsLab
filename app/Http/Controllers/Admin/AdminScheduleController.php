@@ -62,7 +62,10 @@ class AdminScheduleController extends Controller
             $selectedDate->endOfMonth()->format('Y-m-d')
         );
 
-        return view('admin.schedule.index', compact('monthData', 'selectedDate', 'stats'));
+        // Offset: Sen=0, Sel=1, Rab=2, Kam=3, Jum=4, Sab=5, Min=6
+        $firstDayOffset = ($selectedDate->copy()->startOfMonth()->dayOfWeek + 6) % 7;
+
+        return view('admin.schedule.index', compact('monthData', 'selectedDate', 'stats', 'firstDayOffset'));
     }
 
     /**

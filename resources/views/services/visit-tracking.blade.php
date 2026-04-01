@@ -1,7 +1,7 @@
     {{-- resources/views/services/visit-tracking.blade.php --}}
     @extends('layouts.app')
 
-    @section('title', 'Lacak Pengajuan - Laboratorium Fisika Dasar')
+    @section('title', 'Lacak Pengajuan - Laboratorium Fisika Komputasi')
 
     @section('content')
     <!-- Hero Section -->
@@ -20,7 +20,10 @@
             <div class="scroll-animate mb-8 opacity-0" data-animation="fade-up">
                 <h1 class="font-poppins text-4xl md:text-6xl font-bold leading-tight mb-6">
                     <span class="text-white">Lacak</span>
-                    <span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg"> Pengajuan</span>
+                <span class="bg-clip-text text-transparent drop-shadow-lg"
+                    style="background-image: linear-gradient(90deg, rgba(250, 204, 21, 1) 0%, rgba(255, 255, 255, 1) 0%); -webkit-background-clip: text; color: transparent;">
+                    Pengajuan
+                </span>
                 </h1>
                 <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
                     Pantau status pengajuan kunjungan laboratorium Anda secara real-time
@@ -335,7 +338,7 @@
     });
 
     function shareWhatsApp() {
-        const message = `Halo Admin Laboratorium Fisika Dasar,\n\nSaya ingin menanyakan status pengajuan kunjungan dengan:\n\nID: {{ substr($kunjungan->id, 0, 8) }}\nNama: {{ $kunjungan->namaPengunjung }}\nInstitusi: {{ $kunjungan->institution }}\nTanggal: {{ $kunjungan->formatted_date }}\n\nMohon informasi lebih lanjut.\n\nTerima kasih.`;
+        const message = `Halo Admin Laboratorium Fisika Komputasi,\n\nSaya ingin menanyakan status pengajuan kunjungan dengan:\n\nID: {{ substr($kunjungan->id, 0, 8) }}\nNama: {{ $kunjungan->namaPengunjung }}\nInstitusi: {{ $kunjungan->institution }}\nTanggal: {{ $kunjungan->formatted_date }}\n\nMohon informasi lebih lanjut.\n\nTerima kasih.`;
         const phoneNumber = '6281234567890'; // Sesuaikan dengan nomor admin
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
